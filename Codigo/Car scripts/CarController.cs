@@ -8,10 +8,14 @@ public class CarController : MonoBehaviour
     private const float  wheelBase=2.8f;
     private const float rearTrack= 1.5748f;
     private const float turnRadius=5.85216f;
-    public float minSpeedForMaxSteering;
+ 
     public float steerInput;
     [SerializeField] private  float ackermanAngleLeft;
    [SerializeField] private  float ackermanAngleRight;
+       [Header("Valores modificables")]
+          public float minSpeedForMaxSteering;
+          public float fixedAngleAtHighSpeed;
+
     void Start()
     {
 
@@ -42,8 +46,8 @@ public class CarController : MonoBehaviour
 
  
         // Calculate individual wheel angles using the Ackermann steering formula
-        float frontLeftWheelAngle =  Mathf.Lerp(ackermanAngleLeft, 8f*steerInput, wheels[1].getSpeed() / minSpeedForMaxSteering);
-        float frontRightWheelAngle =  Mathf.Lerp(ackermanAngleRight, 8f*steerInput, wheels[0].getSpeed() / minSpeedForMaxSteering);
+        float frontLeftWheelAngle =  Mathf.Lerp(ackermanAngleLeft, fixedAngleAtHighSpeed*steerInput, wheels[1].getSpeed() / minSpeedForMaxSteering);
+        float frontRightWheelAngle =  Mathf.Lerp(ackermanAngleRight, fixedAngleAtHighSpeed*steerInput, wheels[0].getSpeed() / minSpeedForMaxSteering);
 
         // Debug.Log(frontLeftWheelAngle +" , "+ frontRightWheelAngle);
 
