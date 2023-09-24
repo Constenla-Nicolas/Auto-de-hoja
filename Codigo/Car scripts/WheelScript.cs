@@ -87,4 +87,7 @@ public class WheelScript : MonoBehaviour
     public float getSpeed(){
         return rb.velocity.magnitude*3.6f;
     }
+    public Rigidbody GetRigidbody(){
+        return rb;
+    }
 }

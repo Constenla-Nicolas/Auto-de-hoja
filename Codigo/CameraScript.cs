@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class CameraScript : MonoBehaviour
 {   public Camera camera;
+    public TextMeshProUGUI textMesh;
+    public WheelScript wheelReference;
     public Vector3 originalpos,backposition,backrotation;
 
     // Start is called before the first frame update
@@ -16,7 +18,9 @@ public class CameraScript : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   
+        textMesh.text= Mathf.Round(((wheelReference.GetRigidbody().velocity.magnitude*100)/100)*3.6f).ToString()+" km/h";
+
         if (Input.GetKeyDown(KeyCode.Space))
     {
   
